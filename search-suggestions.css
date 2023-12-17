@@ -1,0 +1,11 @@
+.input-group input:focus {
+    border-color: #ced4da;
+}
+
+.searchListItem:hover {
+    background-color: rgb(225, 221, 221);
+}
+
+.background-gray {
+    background-color: rgb(225, 221, 221);
+}
