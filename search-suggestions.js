@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const suggestionsList = document.getElementById('suggestionsList');
     const searchInput = document.getElementById('searchInput');
     const searchFormButton = document.getElementById('searchFormButton')
-
+    
     function clearInput() {
         searchInput.value = '';
         suggestionsList.innerHTML = '';
@@ -14,13 +14,13 @@ document.addEventListener('DOMContentLoaded', function () {
     searchInput.addEventListener('input', function () {
         suggestionsList.style.display = 'block'
         const searchTerm = searchInput.value;
-
-        if (searchTerm.trim() === '') {
+        
+        if (searchTerm == '') {
             clearInput()
             return;
         }
 
-        fetch(`http://127.0.0.1:8000/search?q=${searchTerm}&term=api`, {
+        fetch(`http://127.0.0.1:8000/product?q=${searchTerm}&term=api`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
             listItem.addEventListener('click', function (event) {
                 event.preventDefault();
                 searchInput.value = suggestion.name;
+                console.log(searchInput.value)
                 suggestionsList.innerHTML = '';
                 searchFormButton.click();
             });
@@ -76,7 +77,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     searchInput.addEventListener('blur', function (event) {
-        suggestionsList.style.display = 'none';
+        setTimeout(function () {
+            suggestionsList.style.display = 'none';
+        }, 200);
     })
 
     searchInput.addEventListener('focus', function (event) {
